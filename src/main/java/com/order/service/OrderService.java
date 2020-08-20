@@ -18,14 +18,8 @@ public class OrderService {
 	public List<Orders> retrieveAllOrders() {
 		return (List<Orders>) orderRepository.findAll();
 	}
-	public Orders retrieveOrderByCode(Long Id) {
-		List<Orders> ordersList = (List<Orders>) orderRepository.findAll();
-		for (Orders order : ordersList) {
-			if (order.getOrderId().equals(Id)) {
-				return order;
-			}
-		}
-		return null;
+	public Optional<Orders> retrieveOrderByCode(Long Id) {
+		return orderRepository.findById(Id);
 	}
 	public Orders saveOrders(Orders order) {
 		Orders ordr = orderRepository.save(order);
