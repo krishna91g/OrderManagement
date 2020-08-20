@@ -19,13 +19,8 @@ public class ProductService {
 		return (List<Products>) productRepository.findAll();
 	}
 	public Products retrieveProductsByCode(String productCode) {
-		List<Products> productslist = (List<Products>) productRepository.findAll();
-		for (Products product : productslist) {
-			if (product.getProductCode().equals(productCode)) {
-				return product;
-			}
-		}
-		return null;
+		Products productslist =  productRepository.findByProductCode(productCode);
+			return productslist;
 	}
 	public Products saveProduct(Products product) {
 		Products prd = productRepository.save(product);
